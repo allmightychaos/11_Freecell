@@ -1,2 +1,2 @@
-# freecell
-Frecell Solitare, Pointers with linked lists
+# Freecell
+Freecell Solitare, Pointers with linked lists
