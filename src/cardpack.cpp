@@ -38,3 +38,22 @@ void Cardpack::get_random_cards(Card *array[], int count)
         }
     }
 }
+
+// void Cardpack::get_random_cards(Card *array[], int count)
+// {
+//     for(int i = 0; i < count; i++)
+//     {
+//         if(size > 0)
+//         {
+//             int c = i % size;
+//             array[i] = pack[c];
+//             pack[c] = pack[size - 1];
+//             pack[size - 1] = nullptr;
+//             size--;
+//         }
+//         else
+//         {
+//             array[i] = nullptr;
+//         }
+//     }
+// }

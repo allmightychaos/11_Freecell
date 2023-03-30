@@ -9,32 +9,53 @@ Card::Card(Suits suite, int value)
     this->value = value;
 }
 
-Card *Card::remove_last_card() {
-    if (!this->next)
-        return nullptr;
+Card *Card::remove_last_card()
+{
 
-    this->next = remove_last_card();
-    return this;
-}
-
-Card *Card::get_last_card() {
-    if (next == nullptr) {
+    static Card *pre = this;
+    if (next == nullptr)
+    {
+        pre->next = nullptr;
         return this;
     }
-    else {
-        return next->get_last_card();
+    else
+    {
+        pre = this;
+        return next->remove_last_card();
     }
-
+    
+    
+    //vervollständigen
     return nullptr;
 }
 
-void Card::add_card(Card *card) {
-    if (next == nullptr) {
+Card *Card::get_last_card()
+{
+    //vervollständigen
+    if (next == nullptr)
+    {
+        return this;
+    }
+    else
+    {
+        return next->get_last_card();
+    }
+}
+
+void Card::add_card(Card *card)
+{
+    //vervollständigen
+
+    if (next == nullptr)
+    {
         next = card;
     }
-    else {
+    else
+    {
         next->add_card(card);
     }
+    
+    
 }
 
 void Card::print(int x, int y)
@@ -144,3 +165,4 @@ void Card::print(int x, int y)
         next->print(x, y + 2);
     }
 }
+
