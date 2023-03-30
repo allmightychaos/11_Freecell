@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.20.0)
-project(main_test VERSION 0.1.0)
+cmake_minimum_required(VERSION 3.0.0)
+project(freecell VERSION 0.1.0)
 
 include(CTest)
 enable_testing()
 
-add_executable(main_test main.cpp)
+add_executable(freecell src/main.cpp src/card.cpp src/cardstack.cpp src/cardpack.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

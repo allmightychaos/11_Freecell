@@ -9,6 +9,7 @@
 int main(int, char**) {
     system("clear");
 
+    while (true) {
     Cardpack pack;
     Cardstack *places[16];
     Card *cards[7];
@@ -38,19 +39,16 @@ int main(int, char**) {
     places[15] = new Cardstack("  16 ", 50, 6, Game, 6, cards);
 
     bool finished = false;
-    while(!finished)
-    {
+    while(!finished) {
         std::cout << "\033[2J";
-        for(int i = 0; i < 16; i++)
-        {
+        for(int i = 0; i < 16; i++) {
             places[i]->print();
         }
         int source = 0;
         int target = 0;
         std::cout <<  "\033[1;56HVon Stapel eingeben: ";
         std::cin >> source;
-        if(std::cin.fail())
-        {
+        if(std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "\033[4;56HUngültige Eingabe.\033[5;56HTaste drücken um fortzusetzen.";
@@ -60,8 +58,7 @@ int main(int, char**) {
         }
         std::cout <<  "\033[2;56HZiel Stapel eingeben: ";
         std::cin >> target;
-        if(std::cin.fail())
-        {
+        if(std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "\033[4;56HUngültige Eingabe.\033[5;56HTaste drücken um fortzusetzen.";
@@ -71,52 +68,61 @@ int main(int, char**) {
         }
         std::cout <<  "\033[3;56H" << source << " -> " << target;
 
-        if(source > 0 && source < 17 && target > 0 && target < 17)
-        {
+        if(source > 0 && source < 17 && target > 0 && target < 17) {
             Card *c = places[source - 1]->get_last_card();
-            if(c)
-            {
-                if(places[target - 1]->can_place_card(c))
-                {
+            if(c) {
+                if(places[target - 1]->can_place_card(c)) {
                     Card *c = places[source - 1]->remove_last_card();
                     places[target - 1]->add_card(c);
                 }
-                else
-                {
+                else {
                     std::cout << "\033[4;56HAuf diesen Stapel kann diese Karte nicht gelegt werden.\033[5;56HTaste drücken um fortzusetzen.";
                     std::cin.get();
                     std::cin.get();
                     continue;
                 }
             }
-            else
-            {
+            else {
                 std::cout << "\033[4;56HVon dem Stapel kann keine Karte genommen werden.\033[5;56HTaste drücken um fortzusetzen.";
                 std::cin.get();
                 std::cin.get();
                 continue;
             }
         }
-        else
-        {
+        else {
             std::cout << "\033[4;56HUngültige Eingabe.\033[5;56HTaste drücken um fortzusetzen.";
             std::cin.get();
             std::cin.get();
         }
 
         finished = true;
-        for(int i = 4; i < 16; i++)
-        {
-            if(!places[i]->is_empty())
-            {
+        for(int i = 4; i < 16; i++) {
+            if(!places[i]->is_empty()) {
                 finished = false;
                 break;
             }
         }
     }
-    for(int i = 0; i < 16; i++)
-    {
+    for(int i = 0; i < 16; i++) {
         places[i]->print();
     }
     std::cout << "\033[11;1HGratulation! Du hast gewonnen!." << std::endl;
+    
+    char c;
+    std::cout << "\033[12;1HNochmal spielen? (j/n): ";
+    std::cin >> c;
+    if (c == 'n') {
+        break;
+    }
+    else if (c == 'j') {
+        for(int i = 0; i < 16; i++) {
+            delete places[i];
+        }
+        delete &pack;
+        continue;
+    }
+    else {
+        std::cout << "\033[13;1HUngültige Eingabe." << std::endl;
+        break;
+    }
 }
