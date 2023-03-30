@@ -3,12 +3,13 @@
 
 enum Suits { Spade, Club, Heart, Diamond };
 
-class Card {
-private:
+class Card
+{
+    private:
     Suits suite;
     int value;
     Card *next = nullptr;
-public:
+    public:
     Card() { }
     Card(Suits suite, int value);
     void print(int x, int y);

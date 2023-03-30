@@ -7,6 +7,8 @@
 #include "cardpack.h"
 
 int main(int, char**) {
+    system("clear");
+
     Cardpack pack;
     Cardstack *places[16];
     Card *cards[7];
