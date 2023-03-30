@@ -11,7 +11,6 @@ Card::Card(Suits suite, int value)
 
 Card *Card::remove_last_card()
 {
-
     static Card *pre = this;
     if (next == nullptr)
     {
@@ -23,10 +22,7 @@ Card *Card::remove_last_card()
         pre = this;
         return next->remove_last_card();
     }
-    
-    
-    //vervollständigen
-    return nullptr;
+
 }
 
 Card *Card::get_last_card()
