@@ -9,7 +9,6 @@
 int main(int, char**) {
     system("clear");
 
-    while (true) {
     Cardpack pack;
     Cardstack *places[16];
     Card *cards[7];
@@ -107,22 +106,4 @@ int main(int, char**) {
         places[i]->print();
     }
     std::cout << "\033[11;1HGratulation! Du hast gewonnen!." << std::endl;
-    
-    char c;
-    std::cout << "\033[12;1HNochmal spielen? (j/n): ";
-    std::cin >> c;
-    if (c == 'n') {
-        break;
-    }
-    else if (c == 'j') {
-        for(int i = 0; i < 16; i++) {
-            delete places[i];
-        }
-        delete &pack;
-        continue;
-    }
-    else {
-        std::cout << "\033[13;1HUngültige Eingabe." << std::endl;
-        break;
-    }
 }
